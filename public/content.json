@@ -1,20 +1,7 @@
 {
   "pageSections": [],
-  "removedItems": {
-    "cadbury-dairy-milk": {
-      "stills": [
-        "media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f1136.png",
-        "media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f2108.png"
-      ],
-      "animatics": [
-        "animatic, 15s cut",
-        "animatic, 30s cut"
-      ]
-    }
-  },
-  "hiddenSections": {
-    "cadbury-dairy-milk": []
-  },
+  "removedItems": {},
+  "hiddenSections": {},
   "conceptImages": [
     {
       "id": "c_mu81xvqfd0azs",
@@ -138,8 +125,7 @@
     "project:bedroom-lifestyle-comp",
     "project:sleep-brand-image-system",
     "project:reference-controlled-imaging",
-    "project:ecommerce-image-system",
-    "media/reel/showreel-2026.mp4"
+    "project:ecommerce-image-system"
   ],
   "stamp": 1789916559894,
   "removedProjects": [

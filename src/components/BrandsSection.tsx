@@ -1,4 +1,4 @@
-import { BRANDS, brandHasContent } from '../data/brands'
+import { brandHasContent } from '../data/brands'
 import { useBrandListOV } from '../data/overrides'
 import { useRuntime, useT } from '../data/runtime'
 import BrandTile from './BrandTile'
@@ -16,6 +16,7 @@ export default function BrandsSection({ compact = false }: { compact?: boolean }
   const { content } = useRuntime()
   const t = useT()
   const brands = useBrandListOV()
+  if (brands.length === 0) return null
 
   return (
     <section
@@ -35,7 +36,7 @@ export default function BrandsSection({ compact = false }: { compact?: boolean }
             {t('brandssec.title')}
           </h2>
           <p className={compact ? 'mt-2 text-sm text-muted' : 'mt-4 text-muted'}>
-            {t('brandssec.sub').replace('{n}', String(BRANDS.length))}
+            {t('brandssec.sub').replace('{n}', String(brands.length))}
           </p>
         </div>
 

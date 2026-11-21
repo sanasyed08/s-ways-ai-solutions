@@ -575,13 +575,6 @@ const HOME_EXTRAS: { group: string; items: [string, string][] }[] = [
     ],
   },
   {
-    group: 'Showreel (home)',
-    items: [
-      ['media/reel/showreel-2026.mp4', 'showreel video (mp4)'],
-      ['media/reel/showreel-2026-poster.jpg', 'showreel poster'],
-    ],
-  },
-  {
     group: 'E-commerce concept page (ecommerce-image-system case study)',
     items: [
       ['media/ecommerce-image-system/desktop-hero.jpg', 'desktop hero'],
@@ -597,8 +590,7 @@ const HOME_EXTRAS: { group: string; items: [string, string][] }[] = [
   {
     group: 'Site files',
     items: [
-      ['media/image-system/og-hero.jpg', 'social share image (1200x630)'],
-      ['media/resume/Syed-Abdul-Wasay-Ali-Resume.pdf', 'resume PDF'],
+      ['media/brand/s-ways-og.jpg', 'social share image (1200x630)'],
     ],
   },
 ]
@@ -694,7 +686,7 @@ function PicturesTab() {
       <div className="flex flex-wrap gap-2">
         {areaBtn('home', 'home page')}
         {areaBtn('project', 'case studies')}
-        {areaBtn('brand', 'brands')}
+        {BRANDS.length > 0 && areaBtn('brand', 'brands')}
         {areaBtn('showcase', 'showcase')}
         {areaBtn('workflows', 'workflows')}
       </div>
@@ -1426,15 +1418,15 @@ function SectionsTab() {
   return (
     <div className="mt-6 space-y-6">
       <SectionsPanel page="home" defs={HOME_SECTIONS} legacyHidden={undefined} />
-      <div className="grid gap-6 xl:grid-cols-2">
-        <SectionsPanel page="brand" defs={BRAND_SECTIONS} />
-        <BrandVisibilityPanel />
-      </div>
+      {BRANDS.length > 0 && (
+        <div className="grid gap-6 xl:grid-cols-2">
+          <SectionsPanel page="brand" defs={BRAND_SECTIONS} />
+          <BrandVisibilityPanel />
+        </div>
+      )}
       <SectionsPanel page="project" defs={PROJECT_SECTIONS} />
       <p className="max-w-3xl text-[13px] leading-relaxed text-muted">
-        “Case-study pages (shared)” and “brand pages (shared)” apply to every case study / brand page.
-        The per-brand toggles above switch individual brand sections back on or off (legacy layer,
-        still respected alongside the order).
+        “Case-study pages (shared)” apply to every case study page.
       </p>
     </div>
   )

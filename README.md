@@ -117,8 +117,8 @@ Keep filenames short and English. Videos: mp4/webm. Images: jpg/png.
 Copy one existing object, change the fields:
 
 - `slug`, url-safe name, matches the media folder
-- `title`, `company` (`'cleanDirty.ai'` | `'Ogilvy'`), `role`, `year`
-- `cover`, `/media/<slug>/cover.jpg`
+- `title`, `company` (`'Concept'`), `role`, `year`
+- `cover`, `media/<slug>/cover.jpg`
 - `spec`, the mono parameter strip (base model, sampler, steps, …). Real
   numbers sell the story, this is the site's signature element.
 - `overview` / `challenge` / `approach`, the case-study narrative:
@@ -141,15 +141,15 @@ npm run build
 
 ## How to add brand media
 
-Brands live in `src/data/brands.ts` (16 brands pre-seeded). Each brand page
-shows three galleries: **stills** (images), **animatics** (videos), **final
-films** (videos).
+Client/partner brands can be added in `src/data/brands.ts` (currently empty
+by default for the pure studio showcase). Each brand page shows three galleries:
+**stills** (images), **animatics** (videos), **final films** (videos).
 
 ### 1. Drop per-brand media in
 
 ```
 public/media/brands/<slug>/
-├── logo.png|svg|webp        # shown on a white tile (transparent bg ideal)
+├── logo.png|svg|webp        # shown on a clean tile (transparent bg ideal)
 ├── stills/
 │   ├── kv-01.jpg
 │   └── kv-02.jpg
@@ -159,15 +159,10 @@ public/media/brands/<slug>/
     └── final-20s.mp4
 ```
 
-Slugs: `cadbury-dairy-milk, milka, maaza, sunsilk, ponds, vaseline, castrol,
-fevicol, ifb, tata-safari, parachute, daawat, tata-sky, venus, dove, himalaya,
-nestle-ceregrow, colgate`.
-
 ### 2. Wire the media in `src/data/brands.ts`
 
-For the matching brand, set `logo: '/media/brands/<slug>/logo.png'` and fill
-`src` on the entries in `images` / `animatics` / `films` (keep the labels or
-rename them). Unfilled entries show an intentional placeholder.
+Add a `Brand` entry with `slug`, `name`, `logo: 'media/brands/<slug>/logo.png'`,
+and `images` / `animatics` / `films`.
 
 ---
 

@@ -37,7 +37,7 @@ export default function FeaturedCard({ project, num }: { project: Project; num: 
       </div>
       <div className="p-4 sm:p-5">
         <p className="font-mono text-[11px] uppercase tracking-wideish text-slateAccent">
-          <span className={project.company === 'Ogilvy' ? 'co-ogilvy' : 'co-cleandirty'}>
+          <span className="font-semibold text-greenReadable">
             {project.company}
           </span>{' '}
           · {project.year}

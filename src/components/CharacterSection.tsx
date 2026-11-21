@@ -26,6 +26,15 @@ export default function CharacterSection() {
     title: m.caption || '',
   }))
 
+  const gridCols =
+    shown.length === 1
+      ? 'mt-6 grid gap-4 max-w-xl'
+      : shown.length === 2
+        ? 'mt-6 grid gap-4 sm:grid-cols-2'
+        : shown.length === 3
+          ? 'mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3'
+          : 'mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+
   return (
     <section id="character" className="scroll-mt-16 py-10 sm:py-12">
       <div className="container-site">
@@ -37,7 +46,7 @@ export default function CharacterSection() {
           <p className="mt-3 text-muted">{t('character.sub')}</p>
         </div>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className={gridCols}>
           {shown.map((item, i) => (
             <Reveal key={item.id} delay={(i % 4) * 70}>
               <button

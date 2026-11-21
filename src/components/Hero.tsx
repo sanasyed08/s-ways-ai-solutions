@@ -3,8 +3,8 @@ import NodeGraph from './NodeGraph'
 import LinkedInIcon from './LinkedInIcon'
 import BrandLogo from './BrandLogo'
 import { LINKEDIN_URL, EMAIL, RESUME_URL } from '../data/social'
-import { useProjectsKept } from '../data/overrides'
-import { useT } from '../data/runtime'
+import { useProjectsKept, useShowcaseOV, useWorkflowsOV } from '../data/overrides'
+import { useRuntime, useT } from '../data/runtime'
 
 // hero disc playlist, all concept-ad videos, one by one, looping (square 780 encodes)
 const HERO_VIDEOS = [
@@ -17,8 +17,11 @@ const HERO_VIDEOS = [
 
 export default function Hero() {
   const titleRef = useRef<HTMLDivElement | null>(null)
+  const { content } = useRuntime()
   const t = useT()
   const kept = useProjectsKept()
+  const showcaseItems = useShowcaseOV()
+  const workflows = useWorkflowsOV()
 
   // hero disc playlist, every concept-ad video glides through the circle, one after another, then loops
   const [disc, setDisc] = useState(0)
@@ -79,16 +82,14 @@ export default function Hero() {
   const resumeUrl = t('social.resume', RESUME_URL)
   const linkedinUrl = t('social.linkedin', LINKEDIN_URL)
   const email = t('social.email', EMAIL)
+  const conceptCount = content?.conceptImages?.length ?? 0
 
   const stats: [string, string][] = [
     [t('hero.stat1.v'), t('hero.stat1.l')],
-    [t('hero.stat2.v'), t('hero.stat2.l')],
-    [t('hero.stat3.v'), t('hero.stat3.l')],
-    [
-      t('hero.stat4.v') || String(kept.filter((p) => p.company !== 'Concept').length),
-      t('hero.stat4.l'),
-    ],
-    [t('hero.stat5.v') || String(kept.length), t('hero.stat5.l')],
+    [t('hero.stat2.v') || String(showcaseItems.length), t('hero.stat2.l')],
+    [t('hero.stat3.v') || String(conceptCount), t('hero.stat3.l')],
+    [t('hero.stat4.v') || String(kept.length), t('hero.stat4.l')],
+    [t('hero.stat5.v') || String(workflows.length), t('hero.stat5.l')],
     [t('hero.stat6.v'), t('hero.stat6.l')],
   ]
 
@@ -151,10 +152,7 @@ export default function Hero() {
             className="k-fade mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
             style={{ animationDelay: '380ms' }}
           >
-            {t('hero.introLead')}{' '}
-            <span className="co-ogilvy">Ogilvy</span> {t('hero.introMid')}{' '}
-            <span className="co-cleandirty">cleanDirty.ai</span>
-            {t('hero.introTail')}
+            {t('hero.intro')}
           </p>
 
           {/* log line, the site's signature flourish */}
@@ -175,9 +173,11 @@ export default function Hero() {
             <a href="#work" className="btn-green">
               {t('hero.ctaWork')}
             </a>
-            <a href={resumeUrl} target="_blank" rel="noreferrer" className="btn-ghost">
-              {t('hero.ctaResume')}
-            </a>
+            {resumeUrl && (
+              <a href={resumeUrl} target="_blank" rel="noreferrer" className="btn-ghost">
+                {t('hero.ctaResume')}
+              </a>
+            )}
             <a
               href={linkedinUrl}
               target="_blank"

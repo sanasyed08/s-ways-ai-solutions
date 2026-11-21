@@ -35,7 +35,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
         <div className="min-w-0 flex-1 p-3.5 sm:p-4">
           <p className="font-mono text-[11px] uppercase tracking-wideish text-slateAccent">
-            <span className={project.company === 'Ogilvy' ? 'co-ogilvy' : 'co-cleandirty'}>
+            <span className="font-semibold text-greenReadable">
               {project.company}
             </span>{' '}
             · {project.year}

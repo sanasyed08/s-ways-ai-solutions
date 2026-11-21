@@ -12,7 +12,7 @@
 //      the label you write in `label`, so the layout stays complete.
 // ---------------------------------------------------------------------------
 
-export type Company = 'Concept' | 'Ogilvy'
+export type Company = 'Concept'
 
 export interface MediaItem {
   src?: string // e.g. '/media/<slug>/workflow/ref2v.png'
@@ -74,439 +74,8 @@ export interface Project {
   ecom?: boolean
 }
 
-// Tab/filter order: Ogilvy first (matches the grid order)
-export const COMPANIES: Company[] = ['Ogilvy', 'Concept']
-
-// "The Story of Us" is ONE campaign: the Cadbury Silk film plus the
-// Zoya Akhtar-directed Disney-style 3D conversion app (ControlNet + style
-// LoRA). Both deliverables live under this single project.
-const ogilvyStoryOfUs: Project = {
-  slug: 'ogilvy-cadbury-silk-story-of-us',
-  title: 'Cadbury "The Story of Us" (Disney+ Hotstar · directed by Zoya Akhtar)',
-  company: 'Ogilvy',
-  role: 'AI Creative Manager, Ogilvy',
-  year: '2024',
-  date: '2024-02-14',
-  status: 'shipped',
-  contribution: [
-    'style lora training, sd 1.5 stack',
-    'character consistency across cuts',
-    'controlnet-guided conversion app',
-    'shot iteration & refinement',
-    'identity locks frame by frame',
-  ],
-  excerpt:
-    'An animated brand film built frame-by-frame from open-source models: style LoRAs on the SD 1.5 stack, trained and re-trained until the story held. No Nano Banana. No Seedance. Just the GPU and the graph. The Zoya Akhtar-directed cuts also turned real couples into Disney-style 3D cartoon characters through a ControlNet-guided app, telecast on Disney+ Hotstar.',
-  cover: 'media/ogilvy-cadbury-silk-story-of-us/cover.jpg',
-  spec: [
-    { label: 'client', value: 'disney+ hotstar (now jiohotstar)' },
-    { label: 'director', value: 'zoya akhtar' },
-    { label: 'base', value: 'sd 1.5 (open-source)' },
-    { label: 'lora', value: 'style lora · own GPU' },
-    { label: 'guide', value: 'controlnet image → disney 3d' },
-    { label: 'year', value: '2024' },
-    { label: 'engagement', value: 'ogilvy' },
-  ],
-  overview:
-    'In 2024 the closed-source image and video models that make this kind of work look easy today did not exist. The Cadbury "The Story of Us" campaign for Disney+ Hotstar (now JioHotstar), directed by Zoya Akhtar, had to be made with open-source image models, an SD 1.5 stack running on my own GPU. My job was twofold: make a 20-second animated love story feel like one continuous reality instead of a thousand separate pictures, and turn a series of real love stories into a Disney-style 3D cartoon film with no shoot days and no animation studio. The way in was an app: style LoRA models on the SD 1.5 checkpoint with ControlNet models steering the generation, so an input image (a couple, a street, a kitchen) went through the app and came out as the same hand, same look, same world in Disney-style 3D. The film ran on Disney+ Hotstar.',
-  challenge:
-    'No model could hold a consistent look, palette or characters across scene after scene. Every frame was a fresh generation, so the story drifted by default. There was no repeatable "make it look the same" button. It had to be trained into the stack: style LoRA models that locked the film\u2019s visual language, tuned and re-tuned until the scenes held together. The 3D cartoon look also had to stay identical across every couple and every shot, and the app had to do the conversion without hand-tweaking each frame. Consistency here is a trained property, not a prompt. Every stylistic drift meant retraining or re-guiding, and the structure of the source image (who is where, what is held, how they look at each other) had to survive the style transfer, or the love story stopped reading.',
-  approach: [
-    'Trained style LoRA models on the SD 1.5 stack to lock the look, palette, character design and lighting, so generations stayed inside the story world.',
-    'Built ControlNet-guided paths into the app so each source image kept its composition and gesture while the style LoRA redrew it as Disney-style 3D cartoon animation.',
-    'Re-trained whenever a frame drifted: the LoRA is a moving target, not a one-shot fix; consistency is maintained, not applied.',
-    'Swept frame sets across seeds and parameters until the sequence read as one film, and swept ControlNet weights across the campaign imagery (valentine frames included) until every conversion stayed inside the same story world.',
-    'Assembled the shots into the final film and delivered the cut that went on air as part of the Disney+ Hotstar telecast.',
-  ],
-  stack: [
-    'SD 1.5 (open-source)',
-    'Style LoRA training',
-    'ControlNet (composition + gesture guide)',
-    'Image → Disney-style 3D conversion app',
-    'Own local GPU',
-    'Frame sweeps / parameter tuning',
-    'Sequence assembly',
-    'Disney+ Hotstar deliverable',
-  ],
-  workflow: [
-    { label: 'style lora training runs' },
-    { label: 'frame sweep, seeds × params' },
-    { label: 'controlnet-guided app path' },
-    { label: 'consistency check grids' },
-    { label: 'shot assembly → final film' },
-  ],
-  results: [
-    { kind: 'video', label: 'final film, the story of us (hotstar promo)', src: 'media/brands/cadbury-dairy-milk/film/story-of-us-cadbury-silk.mp4' },
-    { kind: 'video', label: 'final film, "now" cut (1080p master)', src: 'media/brands/cadbury-dairy-milk/film/story-of-us-cadbury-silk-now.mp4' },
-    { kind: 'video', label: 'story of us, valentine reel (sd 1.5 · controlnet)', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/story-of-us-valentines-reel.mp4' },
-    { kind: 'image', label: 'story of us, valentine still 01', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f1063.png' },
-    { kind: 'image', label: 'story of us, valentine still 02', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f1136.png' },
-    { kind: 'image', label: 'story of us, valentine still 03', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f1966.png' },
-    { kind: 'image', label: 'story of us, valentine still 04', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f2088.png' },
-    { kind: 'image', label: 'story of us, valentine still 05', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f2108.png' },
-    { kind: 'image', label: 'story of us, valentine still 06', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f2398.png' },
-    { kind: 'image', label: 'story of us, valentine still 07', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f2856.png' },
-    { kind: 'image', label: 'story of us, valentine still 08', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f3013.png' },
-    { kind: 'image', label: 'story of us, valentine still 09', src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f3016.png' },
-  ],
-}
-
-// Cadbury Celebrations "Creating Memories Never Clicked", de-aging the
-// grown-up characters through a ComfyUI image workflow (SDXL + de-aged LoRA
-// + face swap). 60s Hindi film, uploaded 2024-08-05. YouTube-embedded.
-const ogilvyCelebrations: Project = {
-  slug: 'ogilvy-cadbury-celebrations-memories',
-  title: 'Cadbury Celebrations, "Creating Memories Never Clicked"',
-  company: 'Ogilvy',
-  role: 'AI Creative Manager, Ogilvy',
-  year: '2024',
-  date: '2024-08-05',
-  status: 'shipped',
-  contribution: [
-    'ai image generation',
-    'de-aged lora training',
-    'face swap workflows',
-    'identity drift checks',
-    'shot iteration & refinement',
-    'comfyui workflow development',
-  ],
-  campaign: { label: 'watch the public release, youtube', url: 'https://www.youtube.com/watch?v=-3d3akxcGKA' },
-  excerpt:
-    'The film is about the memories that were never clicked: the grown-up characters in the Cadbury Celebrations campaign were de-aged back to their younger selves. I built the image workflow in ComfyUI that did the de-aging, using SDXL checkpoints with a de-aged LoRA plus face swap workflows.',
-  cover: 'media/ogilvy-cadbury-celebrations-memories/stills/cadbury-creating-memories-frame.png',
-  spec: [
-    { label: 'client', value: 'cadbury celebrations' },
-    { label: 'base', value: 'sdxl (open-source)' },
-    { label: 'lora', value: 'de-aged lora' },
-    { label: 'route', value: 'face swap workflows' },
-    { label: 'engine', value: 'comfyui image workflow' },
-    { label: 'film', value: '60s · hindi' },
-    { label: 'year', value: '2024' },
-    { label: 'engagement', value: 'ogilvy' },
-  ],
-  overview:
-    'Cadbury Celebrations ran the "Creating Memories Never Clicked" campaign: the kind of childhood moments that were never photographed, and the grown-up characters in the film were de-aged back to their younger selves. My part was the image workflow in ComfyUI that made those de-ages real: SDXL checkpoints with a de-aged LoRA, and face swap workflows that keep the adult\u2019s features recognizable in the child\u2019s face. The 60-second Hindi film ran with the campaign, and the character frames exist turn for turn as image workflow output.',
-  challenge:
-    'A de-aged face is only convincing if the identity survives the age shift. The same person has to read as the child and the grown-up, or the memory stops meaning anything. Off-the-shelf generations drift, so the de-aging had to be a trained and guided workflow: an SDXL checkpoint set the base look, a de-aged LoRA pulled the face younger, and face swap workflows re-fitted the original features onto the younger face, frame by frame, with every run checked for identity drift.',
-  approach: [
-    'Built the image workflow in ComfyUI around SDXL checkpoints so the base renders held a consistent, film-like look.',
-    'Trained and applied a de-aged LoRA that shifts adult faces to their younger selves without losing the underlying identity.',
-    'Wired face swap workflows into the graph so the de-aged face keeps the grown-up character\u2019s recognizable features.',
-    'Swept seeds and workflow weights across the campaign frames until the de-aged characters held together across the film.',
-    'Delivered the de-aged character imagery that went into the 60-second Cadbury Celebrations film on YouTube.',
-  ],
-  stack: [
-    'ComfyUI',
-    'SDXL checkpoints (open-source)',
-    'De-aged LoRA',
-    'Face swap workflows',
-    'Image de-age pipeline',
-    'Own local GPU',
-    'Cadbury Celebrations deliverable',
-  ],
-  workflow: [
-    { label: 'sdxl checkpoint base' },
-    { label: 'de-aged lora' },
-    { label: 'face swap workflow' },
-    { label: 'image workflow in comfyui' },
-    { label: 'identity check passes' },
-  ],
-  results: [
-    {
-      kind: 'video',
-      label: 'cadbury celebrations, creating memories never clicked (60s · youtube)',
-      src: 'https://youtu.be/-3d3akxcGKA',
-    },
-    {
-      kind: 'image',
-      label: 'de-aged frame, schoolyard scene',
-      src: 'media/ogilvy-cadbury-celebrations-memories/stills/cadbury-creating-memories-frame.png',
-    },
-  ],
-}
-
-// Lacta Christmas AI, "Compartilhe o seu Natal": consumer uploads a photo
-// and it becomes an AI avatar inside a shareable Christmas story. The
-// campaign ran on Instagram (reel DDkB4SyxF5k, @ingridguimaraes, 2024-12-14).
-const lactaChristmasAi: Project = {
-  slug: 'lacta-christmas-ai-app',
-  title: 'Lacta Christmas AI app, photo to avatar "Compartilhe o seu Natal"',
-  company: 'Ogilvy',
-  role: 'AI Creative Manager, Ogilvy',
-  year: '2024',
-  date: '2024-12-14',
-  status: 'shipped',
-  contribution: [
-    'ai image generation',
-    'photo → ai avatar conversion',
-    'identity-safe renders across faces',
-    'seasonal look lock',
-    'batch iteration & cleanup',
-  ],
-  campaign: { label: 'view the campaign reel, instagram', url: 'https://www.instagram.com/reel/DDkB4SyxF5k/' },
-  excerpt:
-    'For Lacta\u2019s Christmas campaign I created the images that drive the AI app: a consumer uploads a photo and it comes back as an AI avatar inside a personalised Christmas story, ready to share. The campaign itself ran as an Instagram reel and the app segment was the heart of it.',
-  cover: 'media/lacta-christmas-ai-app/stills/lacta-christmas-ai-avatar.png',
-  spec: [
-    { label: 'client', value: 'lacta (mondelez)' },
-    { label: 'campaign', value: 'compartilhe o seu natal' },
-    { label: 'feature', value: 'photo → ai avatar + christmas story' },
-    { label: 'engine', value: 'ai image workflow' },
-    { label: 'season', value: 'christmas 2024' },
-    { label: 'year', value: '2024' },
-    { label: 'engagement', value: 'ogilvy' },
-  ],
-  overview:
-    'Lacta wanted a Christmas experience people could make their own: upload a photo, and suddenly you are an AI avatar inside a Christmas story, shareable with friends and family. I created the images for the AI app behind it. Every upload had to come out as the same person inside the same warm Christmas world, and the app had to hold the look across hundreds of different faces.',
-  challenge:
-    'A stranger\u2019s photo lands in the app and has to become a believable avatar without any hand-tuning per user. The identity has to survive the avatar redraw, and the style has to feel like Lacta\u2019s Christmas: warm, festive, instantly shareable. Drift here is the failure mode, so the image workflow had to be repeatable and identity-safe by construction.',
-  approach: [
-    'Built the image workflow that converts a consumer photo into an AI avatar inside the Christmas story setting.',
-    'Locked the seasonal look so every avatar sits in the same warm Christmas world, no matter who uploads.',
-    'Kept the identity of the uploader: the avatar reads as the same person, not a generic face.',
-    'Generated the campaign imagery for the app and the reel (the blue Lacta box, the festive studio and the "Compartilhe o seu Natal" app screens).',
-    'Shipped the images that let the campaign run: upload the photo, get your avatar and your Christmas story, share it.',
-  ],
-  stack: [
-    'AI image generation',
-    'Avatar + identity workflow',
-    'Seasonal style consistency',
-    'Lacta Christmas campaign',
-    'Instagram reel delivery',
-  ],
-  workflow: [
-    { label: 'photo → ai avatar conversion' },
-    { label: 'christmas story wrap' },
-    { label: 'seasonal look lock' },
-    { label: 'identity-safe renders' },
-  ],
-  results: [
-    {
-      kind: 'video',
-      label: 'lacta christmas app, campaign reel (instagram)',
-      src: 'https://www.instagram.com/reel/DDkB4SyxF5k/',
-    },
-    {
-      kind: 'image',
-      label: 'ai avatar frame, christmas moment',
-      src: 'media/lacta-christmas-ai-app/stills/lacta-christmas-ai-avatar.png',
-    },
-  ],
-}
-
-// Natural Diamond Promotion Foundation, "History of Diamonds in India"
-// timeline imagery: period scenes (1900 Surat workshop, 1950s-60s factory)
-// generated with CLOSED-SOURCE image models for the ndpf.in timeline.
-const ndpfHistoryOfDiamonds: Project = {
-  slug: 'ndpf-history-of-diamonds',
-  title: 'History of Diamonds in India, timeline imagery (NDPF)',
-  company: 'Ogilvy',
-  role: 'AI Creative Manager, Ogilvy',
-  year: '2026',
-  date: '2026-07-30',
-  status: 'shipped',
-  contribution: [
-    'historical photo prompting',
-    'closed-source image models',
-    'era look tuning',
-    'timeline asset delivery',
-  ],
-  campaign: { label: 'see the timeline live, ndpf.in', url: 'https://ndpf.in' },
-  excerpt:
-    'For the Natural Diamond Promotion Foundation I created the visual world of the "History of Diamonds in India" timeline: the Golconda diamond at twilight, diamonds resting on the old trade map, river panning for alluvial stones, plus the 1900 Surat workshop and 1950s-60s factory scenes, generated with closed-source image models so the timeline reads like real archival photography.',
-  cover: 'media/ndpf-history-of-diamonds/stills/ndpf-golconda-diamond-twilight.webp',
-  spec: [
-    { label: 'client', value: 'natural diamond promotion foundation' },
-    { label: 'feature', value: 'history of diamonds in india timeline' },
-    { label: 'engine', value: 'closed-source image models' },
-    { label: 'route', value: 'era-correct historical imagery' },
-    { label: 'year', value: '2026' },
-    { label: 'engagement', value: 'ogilvy' },
-  ],
-  overview:
-    'The NDPF website tells the story of how India became the diamond capital of the world. The timeline needed period pictures that do not exist in archives: two Patidar brothers cutting and polishing in 1900 Surat, then the first formal workshops of the 1950s-60s. I generated that imagery with closed-source image models, tuned until each frame reads like an authentic photograph from its era.',
-  challenge:
-    'Archival photos do not exist for these moments, and AI images of historical scenes tend to look modern or generic. Each frame had to stay inside its period: tools, clothing, workers, lighting and all, plus the right mood so the timeline feels like a real journey through India\u2019s diamond history.',
-  approach: [
-    'Created the timeline key visuals: a faceted diamond on black rock above the still water of Golconda, diamonds scattered across the old trade map, and a hand panning river gravel for alluvial diamonds.',
-    'Used closed-source image models to produce the historical scenes for the timeline.',
-    'Built the 1900 frame: two brothers from the Patidar community cutting and polishing diamonds in a Surat workshop after returning from South Africa.',
-    'Built the 1950s-60s frame: the first formal diamond workshops, the factory rows that made Surat the world\u2019s largest cutting centre.',
-    'Tuned era cues (wardrobe, workbenches, tone, grain) until each scene read as period photography, then delivered the timeline imagery shown on ndpf.in.',
-  ],
-  stack: [
-    'Closed-source image models',
-    'Era-correct historical styling',
-    'Timeline asset production',
-    'Natural Diamond Promotion Foundation deliverable',
-  ],
-  workflow: [
-    { label: 'historical photo prompting' },
-    { label: 'closed-source image models' },
-    { label: 'era look tuning' },
-    { label: 'timeline asset delivery' },
-  ],
-  results: [
-    {
-      kind: 'image',
-      label: 'golconda era, diamond at twilight (key visual)',
-      src: 'media/ndpf-history-of-diamonds/stills/ndpf-golconda-diamond-twilight.webp',
-    },
-    {
-      kind: 'image',
-      label: 'diamonds on the old trade map (key visual)',
-      src: 'media/ndpf-history-of-diamonds/stills/ndpf-diamonds-old-trade-map.webp',
-    },
-    {
-      kind: 'image',
-      label: 'river panning for alluvial diamonds (key visual)',
-      src: 'media/ndpf-history-of-diamonds/stills/ndpf-river-panning-alluvial.webp',
-    },
-    {
-      kind: 'image',
-      label: 'history of diamonds in india, timeline section (ndpf.in)',
-      src: 'media/ndpf-history-of-diamonds/stills/ndpf-history-timeline.jpg',
-    },
-    {
-      kind: 'image',
-      label: 'history of diamonds, first discovery & ancient trade (ndpf.in)',
-      src: 'media/ndpf-history-of-diamonds/stills/ndpf-timeline-first-discovery-trade.jpg',
-    },
-    {
-      kind: 'image',
-      label: 'history of diamonds, golconda era & 1665 (ndpf.in)',
-      src: 'media/ndpf-history-of-diamonds/stills/ndpf-timeline-golconda-world-notices.jpg',
-    },
-  ],
-}
-
-// IFB Christmas 2025, "Because some miracles do happen overnight": the
-// Santa finger snap, generated open-source. The motion came from a capture
-// of my own hand, driven through Wan Animate with a Santa hand reference.
-const ogilvyIfbChristmas: Project = {
-  slug: 'ogilvy-ifb-christmas-2025',
-  title: 'IFB Christmas 2025 · the Santa finger snap (Wan Animate)',
-  company: 'Ogilvy',
-  role: 'AI Creative Manager, Ogilvy',
-  year: '2025',
-  date: '2025-12-12',
-  status: 'shipped',
-  contribution: [
-    'wan animate motion transfer',
-    'own hand capture as the motion source',
-    'santa hand reference setup',
-    'finger snap generation + iteration',
-    'closed-source model tests (veo 3 · kling 2)',
-  ],
-  campaign: { label: 'watch the film, ifb christmas 2025 (youtube)', url: 'https://youtu.be/ZmPFjsUXuCQ' },
-  excerpt:
-    'The IFB Christmas film "Because some miracles do happen overnight" is built around one tiny gesture: a finger snap. It was also the hardest shot to make. The top closed-source video models of the time, Google Veo 3 and Kling 2 among them, could not generate a natural snap. So I recorded my own hand performing the snap and drove it through Wan Animate with a Santa hand reference image, until the gesture read real. The side-by-side shows the hand capture against the generated Santa hand.',
-  cover: 'media/ogilvy-ifb-christmas-2025/cover.jpg',
-  spec: [
-    { label: 'client', value: 'ifb appliances' },
-    { label: 'film', value: 'because some miracles do happen overnight' },
-    { label: 'moment', value: 'the santa finger snap' },
-    { label: 'engine', value: 'wan animate · open-source' },
-    { label: 'motion source', value: 'own hand capture' },
-    { label: 'failed first', value: 'veo 3 · kling 2' },
-    { label: 'engagement', value: 'ogilvy' },
-  ],
-  overview:
-    'Every IFB Christmas film is built on a small piece of magic, and in "Because some miracles do happen overnight" that magic is a finger snap: the gesture that brings the house to life and sets the appliances working while everyone sleeps. The shot is a few seconds of screen time, but it had to read as a real hand doing a real snap, with the release landing exactly on the beat. I built it open-source end to end: my own hand performed the gesture on camera, Wan Animate carried that motion onto a Santa hand, and the snap that landed in the film came out of this pipeline.',
-  challenge:
-    'A finger snap is one of the hardest micro-actions to get right. It lives in a fraction of a second: the press, the slip, the release, and a sound that has to line up with what the eye sees. The top closed-source video models of the moment, Google Veo 3 and Kling 2 among them, all failed to produce a natural snap. It was also the era before Seedream 2.5 and MiniMax H3. The gesture had to come from somewhere real, and the route that delivered was open-source with a real reference motion.',
-  approach: [
-    'Recorded my own hand performing the finger snap, so the tension and timing of the gesture were real.',
-    'Took that capture into Wan Animate as the motion source and used a Santa hand as the reference image.',
-    'Ran the shot through the top closed-source video models first, Google Veo 3 and Kling 2 among them, and none of them gave a natural snap.',
-    'Iterated the generation until the Santa hand pressed, released and settled like a real snap, with the release landing where the film needed it.',
-    'The generated snap landed in the IFB Christmas 2025 film, with the pipeline staying open-source from capture to delivery.',
-  ],
-  stack: [
-    'Wan Animate (open-source)',
-    'Own hand capture (motion source)',
-    'Santa hand reference image',
-    'Finger snap generation',
-    'Open-source-first pipeline',
-    'IFB Christmas 2025 film deliverable',
-  ],
-  workflow: [
-    { label: 'own hand capture · the snap performed for real' },
-    { label: 'santa hand reference image' },
-    { label: 'wan animate · motion transfer' },
-    { label: 'snap iteration until natural' },
-    { label: 'snap lands in the ifb christmas film' },
-  ],
-  results: [
-    { kind: 'video', label: 'ifb christmas 2025 · "because some miracles do happen overnight" (youtube)', src: 'https://youtu.be/ZmPFjsUXuCQ', poster: 'media/ogilvy-ifb-christmas-2025/video/ad-poster.jpg' },
-    { kind: 'video', label: 'finger snap · hand capture vs wan animate (side by side)', src: 'media/ogilvy-ifb-christmas-2025/video/finger-snap-comparison.mp4', poster: 'media/ogilvy-ifb-christmas-2025/video/finger-snap-comparison-poster.jpg' },
-    { kind: 'video', label: 'hand capture · full clip', src: 'media/ogilvy-ifb-christmas-2025/video/hand-capture.mp4', poster: 'media/ogilvy-ifb-christmas-2025/video/hand-capture-poster.jpg' },
-    { kind: 'video', label: 'wan animate · full clip', src: 'media/ogilvy-ifb-christmas-2025/video/wan-animate-santa.mp4', poster: 'media/ogilvy-ifb-christmas-2025/video/wan-animate-santa-poster.jpg' },
-  ],
-}
-
-// Vi 5G FanFest "Cricky": the IPL 2025 match-day quiz campaign. One
-// clay-style character, trained as a character LoRA on Flux so every card
-// of the season carried the same face and the same clay finish.
-const ogilvyViCrickyFanfest: Project = {
-  slug: 'ogilvy-vi-5g-fanfest',
-  title: 'Vi 5G FanFest "Cricky" · clay character LoRA (IPL 2025)',
-  company: 'Ogilvy',
-  role: 'AI Creative Manager, Ogilvy',
-  year: '2025',
-  date: '2025-04-22',
-  status: 'shipped',
-  contribution: [
-    'clay-style character lora training · flux',
-    'character consistency across the season',
-    'match-day quiz card generation',
-    'one look held across instagram · x · facebook',
-  ],
-  campaign: { label: 'the cricky challenge launch reel (instagram)', url: 'https://www.instagram.com/reel/DHgVXZniMaH/' },
-  excerpt:
-    'Vi 5G FanFest turned IPL 2025 into a match-day cricket quiz across Instagram, X and Facebook, with vouchers worth ₹5,000 up for grabs. The face of the campaign was one clay-style character, and every card had to show that same character. I trained that character as a LoRA on Flux, and the look held for the whole season.',
-  cover: 'media/ogilvy-vi-5g-fanfest/cover.jpg',
-  spec: [
-    { label: 'client', value: 'vi (vodafone idea)' },
-    { label: 'campaign', value: 'vi 5g fanfest · cricky quiz' },
-    { label: 'base', value: 'flux' },
-    { label: 'lora', value: 'clay-style character · own training' },
-    { label: 'channels', value: 'instagram · x · facebook' },
-    { label: 'year', value: '2025' },
-    { label: 'engagement', value: 'ogilvy' },
-  ],
-  overview:
-    'Vi 5G FanFest ran the length of the 2025 IPL season: a quiz on every match day, answers in the comments, vouchers worth ₹5,000 up for grabs. The face of the campaign was a single clay-style character, and that character had to look identical on every card: same face, same clay finish, same world, whatever the fixture. I trained the character as a LoRA on Flux, and every match-day card came out of that training.',
-  challenge:
-    'This is the consistency problem in its purest form: dozens of cards across two months of cricket, each one a fresh generation, all of them having to read as the same character. Untrained, a character drifts a little with every generation: the face shifts, the clay finish changes, the proportions wander, and the campaign slowly stops looking like one campaign. The character had to survive fixture changes, scene changes and question changes, and still land as the same clay figure on every single match day.',
-  approach: [
-    'Trained the clay-style character as a character LoRA on Flux, so the look became a property of the model instead of a line in the prompt.',
-    'Generated the match-day quiz cards through that LoRA, holding one face and one clay finish across the season.',
-    'Retrained whenever the character started drifting: over a campaign this long, consistency is maintained, not applied once.',
-    'Kept every card inside one world: the same character, the same clay treatment, the same campaign, match after match.',
-  ],
-  stack: [
-    'Vi 5G FanFest · match-day quiz campaign',
-    'Character LoRA training (Flux base)',
-    'Clay-style character consistency',
-    'Match-day quiz card generation',
-    'Delivered on instagram · x · facebook',
-  ],
-  workflow: [
-    { label: 'vi 5g fanfest quiz · the season-long brief' },
-    { label: 'clay-style character · lora training on flux' },
-    { label: 'match-day quiz cards · one character, whole season' },
-    { label: 'delivered on instagram · x · facebook' },
-  ],
-  results: [
-    { kind: 'image', label: 'fanfest quiz q4 · del vs hydr · 30 mar', src: 'media/brands/vi/stills/vi-fanfest-quiz-x-30mar.jpg', href: 'https://x.com/ViCustomerCare/status/1906319255290929392', hrefLabel: 'view on x ↗' },
-    { kind: 'image', label: 'fanfest quiz q4 · lkn vs guj · 12 apr', src: 'media/brands/vi/stills/vi-fanfest-quiz-x-12apr.jpg', href: 'https://x.com/ViCustomerCare/status/1911030303126172097', hrefLabel: 'view on x ↗' },
-    { kind: 'image', label: 'fanfest quiz q1 · del vs mum · 13 apr', src: 'media/brands/vi/stills/vi-fanfest-quiz-x-13apr.jpg', href: 'https://x.com/ViCustomerCare/status/1911419108232515820', hrefLabel: 'view on x ↗' },
-    { kind: 'image', label: 'fanfest quiz q4 · mum vs hyd · 17 apr', src: 'media/brands/vi/stills/vi-fanfest-quiz-x-17apr.jpg', href: 'https://x.com/ViCustomerCare/status/1912902632227922291', hrefLabel: 'view on x ↗' },
-    { kind: 'image', label: 'fanfest quiz q2 · blr vs raj · 24 apr', src: 'media/brands/vi/stills/vi-fanfest-quiz-q2.jpg', href: 'https://www.facebook.com/viofficialfanworld/posts/cricky-is-testing-your-cricket-iq-comment-vi5gfanfest-with-the-right-answers-to-/985824210433197/', hrefLabel: 'view on facebook ↗' },
-    { kind: 'image', label: 'fanfest quiz q5 · blr vs che · 03 may', src: 'media/brands/vi/stills/vi-fanfest-quiz-x-03may.jpg', href: 'https://x.com/ViCustomerCare/status/1918712163373597153', hrefLabel: 'view on x ↗' },
-  ],
-}
+// Studio case studies
+export const COMPANIES: Company[] = ['Concept']
 
 // "Futuristic Neon Chase", self-directed concept: environment and camera
 // built in Blender with the agent driving it over MCP, clay render pass as
@@ -515,7 +84,7 @@ const conceptNeonChase: Project = {
   slug: 'futuristic-neon-chase',
   title: 'Futuristic Neon Chase · MCP Blender env → Seedance 2.5',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-09-09',
   status: 'concept',
@@ -575,7 +144,7 @@ const conceptHappydentWhiteGum: Project = {
   slug: 'concept-happydent-white-gum',
   title: 'Happydent White gum · concept ad (Seedance 2.5)',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-08-16',
   status: 'concept',
@@ -639,7 +208,7 @@ const concept7up: Project = {
   slug: 'concept-7up',
   title: '7up · concept ad (Seedance 2.5)',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-09-13',
   status: 'concept',
@@ -702,7 +271,7 @@ const csMattressHeroStudio: Project = {
   title: 'Mattress Hero Studio',
   subtitle: 'Product accuracy + studio compositing',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-09-17',
   status: 'concept',
@@ -796,7 +365,7 @@ const csBedroomLifestyle: Project = {
   title: 'Bedroom Lifestyle Comp',
   subtitle: 'Product/environment integration + perspective & light matching',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-09-17',
   status: 'concept',
@@ -890,7 +459,7 @@ const csReferenceControlled: Project = {
   title: 'Reference-Controlled AI Imaging',
   subtitle: 'Reference images → controlled generation → production variations',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-09-17',
   status: 'concept',
@@ -981,7 +550,7 @@ const csCommercialSystem: Project = {
   title: 'Commercial Creative System',
   subtitle: 'One visual concept → multiple campaign assets',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-09-17',
   status: 'concept',
@@ -1077,7 +646,7 @@ const csEcommerceSystem: Project = {
   title: 'E-commerce Image System',
   subtitle: 'AI imagery designed for product pages, ads and mobile experiences',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-09-17',
   status: 'concept',
@@ -1163,7 +732,7 @@ const conceptSleepBrandSystem: Project = {
   slug: 'sleep-brand-image-system',
   title: 'Sleep brand image system · hero → lifestyle → macro → e-commerce',
   company: 'Concept',
-  role: 'AI Creative Manager',
+  role: 'S-WAYS Ai solutions',
   year: '2026',
   date: '2026-09-15',
   status: 'concept',
@@ -1229,8 +798,8 @@ const conceptSleepBrandSystem: Project = {
   ],
 }
 
-// Grid order = array order. Keep Ogilvy projects first.
-export const projects: Project[] = [ogilvyStoryOfUs, ogilvyCelebrations, lactaChristmasAi, ndpfHistoryOfDiamonds, ogilvyIfbChristmas, ogilvyViCrickyFanfest, csMattressHeroStudio, csBedroomLifestyle, csReferenceControlled, csCommercialSystem, csEcommerceSystem, conceptSleepBrandSystem, conceptHappydentWhiteGum, concept7up, conceptNeonChase]
+// Grid order = array order.
+export const projects: Project[] = [concept7up, conceptNeonChase, conceptHappydentWhiteGum, csMattressHeroStudio, csBedroomLifestyle, csReferenceControlled, csCommercialSystem, csEcommerceSystem, conceptSleepBrandSystem]
 
 // Case-study display order: NEWEST FIRST by `date` (exact when known, else
 // the year). Ties keep the original array order, so same-date entries slot

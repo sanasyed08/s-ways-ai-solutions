@@ -4,30 +4,41 @@ import GitHubIcon from './GitHubIcon'
 import { LINKEDIN_URL, GITHUB_URL } from '../data/social'
 import { useT, useTL } from '../data/runtime'
 
-const TIMELINE = [
+const PROCESS_PILLARS = [
   {
-    role: 'AI Creative Manager',
-    org: 'Ogilvy',
-    location: 'Mumbai, India.',
-    dates: 'Apr 2025 - Present',
-    note: 'AI-native production for client campaigns: image and video pipelines, product imagery systems, identity consistency, automation.',
+    role: 'Direction & Reference Lock',
+    org: 'Phase 01 · Pre-Production',
+    location: 'Isolation & Layout',
+    dates: '01 / Brief → Reference Pack',
+    note: 'Product geometry, proportions, label specs, and camera/light direction locked before a single frame generates.',
     bullets: [
-      'Generative AI imagery and video for brand campaigns (Cadbury, Lacta, IFB, NDPF).',
-      'Built ComfyUI pipelines for controlled generation, consistency, product lock and scale.',
-      'Took ideas from brief to production-ready AI visuals with the creative teams.',
-      'Experimented with emerging image and video models, open-source first.',
+      'Source product extraction and multi-angle reference packs.',
+      '3D environment blocking and camera blocking in Blender via MCP when a shot requires exact perspective.',
+      'Lighting mood boards, palette targets, and format aspect specs mapped upfront.',
     ],
   },
   {
-    role: 'AI Head Artist',
-    org: 'cleanDirty.ai',
-    location: 'Delhi, India. (Remote)',
-    dates: 'Sep 2023 - Feb 2025',
-    note: 'Led AI art direction and production: custom LoRAs, image & video generation systems, mocap pipelines.',
+    role: 'ComfyUI & LoRA Engineering',
+    org: 'Phase 02 · Generation',
+    location: 'Control & Consistency',
+    dates: '02 / Open-Source First → Custom Controls',
+    note: 'Modular node graphs, in-house character and style LoRAs, and deterministic seed/sampler sweeps built for zero drift.',
     bullets: [
-      'Led AI image production as head AI artist, story-driven, cinematic scenes with multiple characters.',
-      'Ran hands-on experiments across every major model wave since 2023.',
-      'Built reusable generation workflows and trained early custom LoRAs.',
+      'Multi-reference conditioning and instruction-guided editing inside ComfyUI.',
+      'Custom character, product, and style LoRA training with strict dataset curation.',
+      'Agent-driven batch queuing and parameter sweeps across local GPU pipelines.',
+    ],
+  },
+  {
+    role: 'Commercial Polish & Delivery',
+    org: 'Phase 03 · Finishing',
+    location: 'Upscale & Multi-Format',
+    dates: '03 / Composite → Grade → Ship',
+    note: 'Physical product compositing, shadow grounding, high-res upscaling, and native aspect adaptation for every placement.',
+    bullets: [
+      'Relighting, contact shadow integration, and texture-preserving upscales.',
+      'Unified color grading across full still sets and AI video cuts.',
+      'Native 16:9 hero, 4:5 mobile, 1:1 catalogue, and 9:16 social deliverables.',
     ],
   },
 ]
@@ -108,7 +119,7 @@ export default function About() {
         <div>
           <h3 className="eyebrow">{t('about.exp')}</h3>
           <ol className="mt-5 space-y-0">
-            {TIMELINE.map((item, i) => (
+            {PROCESS_PILLARS.map((item, i) => (
               <li key={item.role} className="relative border-l border-ink-600 pb-6 pl-6 last:pb-0">
                 <span className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-green" />
                 <p className="font-mono text-[11px] uppercase tracking-wideish text-slateAccent">
@@ -117,10 +128,10 @@ export default function About() {
                 <h4 className="mt-1 font-display text-lg font-bold text-paper">
                   {t(`about.t${i + 1}.role`, item.role)}
                 </h4>
-                <p className={`font-mono text-xs ${item.org === 'Ogilvy' ? 'co-ogilvy' : 'co-cleandirty'}`}>
+                <p className="font-mono text-xs font-semibold text-greenReadable">
                   {t(`about.t${i + 1}.org`, item.org)}
                   {item.location ? (
-                    <span className="text-muted">, {t(`about.t${i + 1}.location`, item.location)}</span>
+                    <span className="font-normal text-muted"> · {t(`about.t${i + 1}.location`, item.location)}</span>
                   ) : null}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">

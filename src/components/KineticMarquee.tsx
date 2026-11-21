@@ -31,6 +31,7 @@ export default function KineticMarquee({
   speed?: number
   rows?: 1 | 2
 }) {
+  if (items.length === 0) return null
   const red = variant === 'red'
   const hasLinks = items.some((i) => typeof i !== 'string')
   const twoRows = red && rows === 2

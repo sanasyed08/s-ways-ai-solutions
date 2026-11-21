@@ -4,10 +4,10 @@ import GitHubIcon from './GitHubIcon'
 import ThemeSelect from './ThemeSelect'
 import BrandLogo from './BrandLogo'
 import { LINKEDIN_URL, GITHUB_URL, RESUME_URL } from '../data/social'
+import { useBrandListOV } from '../data/overrides'
 import { useRuntime, useT } from '../data/runtime'
 
-// Nav order mirrors the home page section order (video concepts first, character
-// consistency next, brands last).
+// Nav order mirrors the home page section order.
 // `section` maps to the home section key used by the admin's section manager.
 const LINKS = [
   { href: '#showcase', section: 'showcase', labelKey: 'nav.showcase', label: 'Showcase' },
@@ -26,6 +26,7 @@ export default function Header() {
   const [progress, setProgress] = useState(0)
   const [open, setOpen] = useState(false)
   const { content } = useRuntime()
+  const brands = useBrandListOV()
   const t = useT()
   const order = content?.sectionOrder?.home
   // sectionOrder (admin v2) wins when present; pageSections is the legacy hide-list
@@ -36,7 +37,8 @@ export default function Header() {
   const links = LINKS.filter(
     (l) =>
       !hidden.includes(l.section) &&
-      (l.href !== '#concept-images' || conceptCount > 0),
+      (l.href !== '#concept-images' || conceptCount > 0) &&
+      (l.href !== '#brands' || brands.length > 0),
   )
   const resumeUrl = t('social.resume', RESUME_URL)
   const linkedinUrl = t('social.linkedin', LINKEDIN_URL)
@@ -94,9 +96,11 @@ export default function Header() {
           >
             {t('header.admin')}
           </a>
-          <a href={resumeUrl} target="_blank" rel="noreferrer" className="btn-ghost whitespace-nowrap !px-3 !py-1.5">
-            {t('header.resume')}
-          </a>
+          {resumeUrl && (
+            <a href={resumeUrl} target="_blank" rel="noreferrer" className="btn-ghost whitespace-nowrap !px-3 !py-1.5">
+              {t('header.resume')}
+            </a>
+          )}
           <a
             href={linkedinUrl}
             target="_blank"
@@ -164,15 +168,17 @@ export default function Header() {
                 {t(l.labelKey, l.label)}
               </a>
             ))}
-            <a
-              href={resumeUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setOpen(false)}
-              className="btn-ghost mt-2 justify-center !py-2.5"
-            >
-              {t('header.resume')}
-            </a>
+            {resumeUrl && (
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+                className="btn-ghost mt-2 justify-center !py-2.5"
+              >
+                {t('header.resume')}
+              </a>
+            )}
             <a
               href={linkedinUrl}
               target="_blank"

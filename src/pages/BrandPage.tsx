@@ -311,8 +311,8 @@ export default function BrandPage({ slug }: { slug: string }) {
   const hasProjects = brandProjects.length > 0
 
   // the brand story belongs to ONE project only (the FIRST entry in the
-  // slug list, the original one, e.g. Cadbury Silk's story), not every
-  // card on the page. New slugs are appended, so never take [length-1].
+  // slug list, the original one), not every card on the page. New slugs are
+  // appended, so never take [length-1].
   const storyOwner = brand.projects?.[0]
 
   // section numbers are sequential per rendered section (story = 00)

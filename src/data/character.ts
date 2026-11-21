@@ -17,7 +17,7 @@ export interface CharacterItem {
   caption: string
 }
 
-// Grid order = array order: workflow artifacts first, delivered characters after.
+// Grid order = array order: workflow artifacts.
 export const CHARACTER: CharacterItem[] = [
   {
     id: 'ch1',
@@ -30,29 +30,5 @@ export const CHARACTER: CharacterItem[] = [
     kind: 'image',
     src: 'media/concept/workflow_product_to_person_hd.png',
     caption: 'Product to person, same shoes onto the woman character · flux.2 klein edit',
-  },
-  {
-    id: 'ch3',
-    kind: 'image',
-    src: 'media/brands/vi/stills/vi-fanfest-quiz-q2.jpg',
-    caption: 'Cricky, one clay character, every match-day card · character LoRA on flux',
-  },
-  {
-    id: 'ch4',
-    kind: 'image',
-    src: 'media/brands/vi/stills/vi-fanfest-quiz-x-12apr.jpg',
-    caption: 'Cricky again, new scene, same face · character LoRA on flux',
-  },
-  {
-    id: 'ch5',
-    kind: 'image',
-    src: 'media/ogilvy-cadbury-celebrations-memories/stills/cadbury-creating-memories-frame.png',
-    caption: 'De-aged frame, schoolyard scene · SDXL + de-age LoRA + face swap',
-  },
-  {
-    id: 'ch6',
-    kind: 'image',
-    src: 'media/ogilvy-cadbury-story-of-us-zoya-akhtar/stills/vday_f2088.png',
-    caption: 'Real couples into 3D characters via the conversion app · SD 1.5 + ControlNet',
   },
 ]

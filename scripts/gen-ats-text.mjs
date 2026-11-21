@@ -121,18 +121,18 @@ p(
   `<p>${esc(T('header.name'))}, ${esc(T('header.tagline'))}. Text version of the interactive portfolio (images &amp; video). Full site: <a href="${esc(SITE_URL)}">${esc(SITE_URL)}</a></p>`
 )
 p(
-  `<p>${esc(T('hero.introLead'))} Ogilvy ${esc(T('hero.introMid'))} cleanDirty.ai${esc(T('hero.introTail'))}</p>`
+  `<p>${esc(T('hero.intro'))}</p>`
 )
 p(`<p>${esc(T('hero.keywords'))}</p>`)
 p(
-  `<p>Contact: <a href="mailto:${esc(D.EMAIL)}">${esc(D.EMAIL)}</a> · <a href="${esc(D.LINKEDIN_URL)}">LinkedIn</a> · <a href="${esc(D.GITHUB_URL)}">GitHub</a> · <a href="${esc(D.RESUME_URL)}">Resume (PDF)</a></p>`
+  `<p>Contact: <a href="mailto:${esc(D.EMAIL)}">${esc(D.EMAIL)}</a> · <a href="${esc(D.LINKEDIN_URL)}">LinkedIn</a> · <a href="${esc(D.GITHUB_URL)}">GitHub</a>${D.RESUME_URL ? ` · <a href="${esc(D.RESUME_URL)}">Resume (PDF)</a>` : ''}</p>`
 )
 
 // about
 p('<h2>About</h2>')
 for (const k of ['about.p1', 'about.p2', 'about.p3', 'about.p4']) p(`<p>${esc(T(k))}</p>`)
 
-// experience
+// studio delivery model / stages
 const jobs = []
 for (let i = 1; i <= 6; i++) {
   const role = T(`about.t${i}.role`)
@@ -150,7 +150,7 @@ if (jobs.length) {
   p(`<h2>${esc(T('about.exp'))}</h2>`)
   for (const j of jobs) {
     p(`<h3>${esc(j.role)}, ${esc(j.org)}</h3>`)
-    p(`<p class="pt-meta">${esc(j.location)} ${esc(j.dates)}</p>`)
+    p(`<p class="pt-meta">${esc(j.location)} · ${esc(j.dates)}</p>`)
     if (j.note) p(`<p>${esc(j.note)}</p>`)
     if (j.bullets.length) p(`<ul>${j.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>`)
   }
@@ -281,7 +281,7 @@ if (D.BRANDS.length) {
 p('<h2>Contact</h2>')
 p(`<p>${esc(T('contact.sub'))}</p>`)
 p(
-  `<p><a href="mailto:${esc(D.EMAIL)}">${esc(D.EMAIL)}</a> · <a href="${esc(D.LINKEDIN_URL)}">${esc(T('contact.row2.label'))}</a> · <a href="${esc(D.GITHUB_URL)}">GitHub</a> · <a href="${esc(D.RESUME_URL)}">${esc(D.RESUME_URL)}</a></p>`
+  `<p><a href="mailto:${esc(D.EMAIL)}">${esc(D.EMAIL)}</a> · <a href="${esc(D.LINKEDIN_URL)}">${esc(T('contact.row2.label'))}</a> · <a href="${esc(D.GITHUB_URL)}">GitHub</a>${D.RESUME_URL ? ` · <a href="${esc(D.RESUME_URL)}">${esc(D.RESUME_URL)}</a>` : ''}</p>`
 )
 p(`<p>${esc(T('contact.row3.label'))} ${esc(T('contact.row3.value'))}</p>`)
 p('</section>')

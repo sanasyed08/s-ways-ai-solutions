@@ -48,14 +48,16 @@ export default function Footer() {
               <GitHubIcon className="h-3.5 w-3.5" />
               {t('footer.github')}
             </a>
-            <a
-              href={resumeUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"
-            >
-              {t('footer.resume')}
-            </a>
+            {resumeUrl && (
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"
+              >
+                {t('footer.resume')}
+              </a>
+            )}
             <a
               href={`mailto:${email}`}
               className="font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"

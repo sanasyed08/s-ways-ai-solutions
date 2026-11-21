@@ -262,13 +262,7 @@ export default function ProjectPage({ slug }: { slug: string }) {
           {t('pui.back')}
         </a>
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <span
-            className={`border px-2.5 py-1 font-mono text-[11px] uppercase tracking-wideish ${
-              project.company === 'Ogilvy'
-                ? 'co-ogilvy border-[#ff3b4e]'
-                : 'co-cleandirty border-[#6B6355]'
-            }`}
-          >
+          <span className="border border-green/50 px-2.5 py-1 font-mono text-[11px] font-semibold uppercase tracking-wideish text-greenReadable">
             {project.company}
           </span>
           <span className="font-mono text-[11px] text-muted">
@@ -322,7 +316,7 @@ export default function ProjectPage({ slug }: { slug: string }) {
             <p className="eyebrow">{t('pui.role')}</p>
             <p className="mt-2 text-sm text-paper/90">{project.role}</p>
             <p className="mt-1 font-mono text-[11px] text-muted">
-              <span className={project.company === 'Ogilvy' ? 'co-ogilvy' : 'co-cleandirty'}>
+              <span className="font-semibold text-greenReadable">
                 {project.company}
               </span>{' '}
               · {project.year}
