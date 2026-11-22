@@ -23,8 +23,8 @@ hash routing and relative `./` asset paths, so no server rewrites are needed).
 
 ## Live deployment (GitHub Pages)
 
-- **Repo:** https://github.com/Syed-Abdul-Wasay-Ali/s-ways-ai-solutions (public)
-- **Live URL:** https://syed-abdul-wasay-ali.github.io/s-ways-ai-solutions/
+- **Repo:** https://github.com/sanasyed08/s-ways-ai-solutions (public)
+- **Live URL:** https://sanasyed08.github.io/s-ways-ai-solutions/
 - Pages serves the `gh-pages` branch (built `dist/` content only).
 
 Update the live site:

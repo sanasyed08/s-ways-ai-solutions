@@ -28,7 +28,7 @@ const CONTENT = path.join(ROOT, 'public', 'content.json')
 const CACHE = path.join(ROOT, 'node_modules', '.cache', 'ats')
 const START = '<!--ATS-TEXT-START-->'
 const END = '<!--ATS-TEXT-END-->'
-const SITE_URL = 'https://syed-abdul-wasay-ali.github.io/s-ways-ai-solutions/'
+const SITE_URL = 'https://sanasyed08.github.io/s-ways-ai-solutions/'
 
 const esc = (s) =>
   String(s ?? '')

@@ -52,7 +52,7 @@ export const UI_GROUPS: TextGroup[] = [
     fields: [
       { k: 'site.title', label: 'browser title', def: 'S-WAYS Ai solutions · Generative AI Production Studio' },
       { k: 'social.linkedin', label: 'linkedin url (optional)', def: '' },
-      { k: 'social.github', label: 'github url', def: 'https://github.com/Syed-Abdul-Wasay-Ali' },
+      { k: 'social.github', label: 'github url (optional)', def: '' },
       { k: 'social.email', label: 'email (optional)', def: '' },
       { k: 'social.resume', label: 'resume file (optional)', def: '' },
     ],
