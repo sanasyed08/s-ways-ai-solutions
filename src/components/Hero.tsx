@@ -178,19 +178,23 @@ export default function Hero() {
                 {t('hero.ctaResume')}
               </a>
             )}
-            <a
-              href={linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-ghost"
-              aria-label="View LinkedIn profile"
-            >
-              <LinkedInIcon className="h-4 w-4" />
-              {t('hero.ctaLinkedin')}
-            </a>
-            <a href={`mailto:${email}`} className="btn-ghost">
-              {t('hero.ctaEmail')}
-            </a>
+            {linkedinUrl && (
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-ghost"
+                aria-label="View LinkedIn profile"
+              >
+                <LinkedInIcon className="h-4 w-4" />
+                {t('hero.ctaLinkedin')}
+              </a>
+            )}
+            {email && (
+              <a href={`mailto:${email}`} className="btn-ghost">
+                {t('hero.ctaEmail')}
+              </a>
+            )}
           </div>
 
           <div

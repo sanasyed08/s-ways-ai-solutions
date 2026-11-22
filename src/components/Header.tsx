@@ -101,25 +101,29 @@ export default function Header() {
               {t('header.resume')}
             </a>
           )}
-          <a
-            href={linkedinUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-ghost whitespace-nowrap !px-3 !py-1.5"
-            aria-label="View LinkedIn profile"
-          >
-            <LinkedInIcon className="h-3.5 w-3.5 shrink-0" />
-            {t('header.linkedin')}
-          </a>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-ghost shrink-0 !px-2.5 !py-1.5"
-            aria-label="GitHub profile"
-          >
-            <GitHubIcon className="h-4 w-4" />
-          </a>
+          {linkedinUrl && (
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-ghost whitespace-nowrap !px-3 !py-1.5"
+              aria-label="View LinkedIn profile"
+            >
+              <LinkedInIcon className="h-3.5 w-3.5 shrink-0" />
+              {t('header.linkedin')}
+            </a>
+          )}
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-ghost shrink-0 !px-2.5 !py-1.5"
+              aria-label="GitHub profile"
+            >
+              <GitHubIcon className="h-4 w-4" />
+            </a>
+          )}
         </nav>
 
         {/* mobile / tablet hamburger */}
@@ -179,28 +183,32 @@ export default function Header() {
                 {t('header.resume')}
               </a>
             )}
-            <a
-              href={linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setOpen(false)}
-              className="btn-ghost mt-2 justify-center !py-2.5"
-              aria-label="View LinkedIn profile"
-            >
-              <LinkedInIcon className="h-4 w-4" />
-              {t('header.linkedin')}
-            </a>
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setOpen(false)}
-              className="btn-ghost mt-2 justify-center !py-2.5"
-              aria-label="GitHub profile"
-            >
-              <GitHubIcon className="h-4 w-4" />
-              github
-            </a>
+            {linkedinUrl && (
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+                className="btn-ghost mt-2 justify-center !py-2.5"
+                aria-label="View LinkedIn profile"
+              >
+                <LinkedInIcon className="h-4 w-4" />
+                {t('header.linkedin')}
+              </a>
+            )}
+            {githubUrl && (
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+                className="btn-ghost mt-2 justify-center !py-2.5"
+                aria-label="GitHub profile"
+              >
+                <GitHubIcon className="h-4 w-4" />
+                github
+              </a>
+            )}
             <a
               href="#/admin"
               onClick={() => setOpen(false)}

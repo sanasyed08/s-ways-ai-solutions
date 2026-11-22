@@ -30,24 +30,28 @@ export default function Footer() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-5">
-            <a
-              href={linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"
-            >
-              <LinkedInIcon className="h-3.5 w-3.5" />
-              {t('footer.linkedin')}
-            </a>
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"
-            >
-              <GitHubIcon className="h-3.5 w-3.5" />
-              {t('footer.github')}
-            </a>
+            {linkedinUrl && (
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"
+              >
+                <LinkedInIcon className="h-3.5 w-3.5" />
+                {t('footer.linkedin')}
+              </a>
+            )}
+            {githubUrl && (
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"
+              >
+                <GitHubIcon className="h-3.5 w-3.5" />
+                {t('footer.github')}
+              </a>
+            )}
             {resumeUrl && (
               <a
                 href={resumeUrl}
@@ -58,12 +62,14 @@ export default function Footer() {
                 {t('footer.resume')}
               </a>
             )}
-            <a
-              href={`mailto:${email}`}
-              className="font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"
-            >
-              {t('footer.email')}
-            </a>
+            {email && (
+              <a
+                href={`mailto:${email}`}
+                className="font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:text-skyBlue"
+              >
+                {t('footer.email')}
+              </a>
+            )}
             <a
               href="#/admin"
               className="rounded-md border border-snow/20 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wideish text-snow/70 transition-colors hover:border-skyBlue hover:text-skyBlue"

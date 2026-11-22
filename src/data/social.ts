@@ -1,4 +1,4 @@
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/syed-abdul-wasay-ali-084a88179/'
+export const LINKEDIN_URL = ''
 export const GITHUB_URL = 'https://github.com/Syed-Abdul-Wasay-Ali'
-export const EMAIL = 'syedabdulwasayali@gmail.com'
+export const EMAIL = ''
 export const RESUME_URL = ''

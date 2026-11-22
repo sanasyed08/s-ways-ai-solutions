@@ -156,26 +156,32 @@ export default function About() {
             <p className="mt-3 text-sm leading-relaxed text-snow/90">
               {t('about.cur.text')}
             </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a
-                href={linkedinUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-snow/40 px-4 py-2 font-mono text-xs uppercase tracking-wideish text-snow transition-colors hover:border-skyBlue hover:text-skyBlue"
-              >
-                <LinkedInIcon className="h-4 w-4" />
-                {t('about.cur.linkedin')}
-              </a>
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-snow/40 px-4 py-2 font-mono text-xs uppercase tracking-wideish text-snow transition-colors hover:border-skyBlue hover:text-skyBlue"
-              >
-                <GitHubIcon className="h-4 w-4" />
-                {t('about.cur.github')}
-              </a>
-            </div>
+            {(linkedinUrl || githubUrl) && (
+              <div className="mt-5 flex flex-wrap gap-3">
+                {linkedinUrl && (
+                  <a
+                    href={linkedinUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 border border-snow/40 px-4 py-2 font-mono text-xs uppercase tracking-wideish text-snow transition-colors hover:border-skyBlue hover:text-skyBlue"
+                  >
+                    <LinkedInIcon className="h-4 w-4" />
+                    {t('about.cur.linkedin')}
+                  </a>
+                )}
+                {githubUrl && (
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 border border-snow/40 px-4 py-2 font-mono text-xs uppercase tracking-wideish text-snow transition-colors hover:border-skyBlue hover:text-skyBlue"
+                  >
+                    <GitHubIcon className="h-4 w-4" />
+                    {t('about.cur.github')}
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </div>
         </Reveal>

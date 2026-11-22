@@ -105,6 +105,15 @@ const T = (k) => {
   if (typeof t === 'string' && t.trim()) return t
   return D.DEF.get(k) ?? ''
 }
+const S = (k, fb) => {
+  const t = texts[k]
+  if (typeof t === 'string') return t.trim()
+  return fb || (D.DEF.get(k) ?? '')
+}
+const email = S('social.email', D.EMAIL)
+const linkedinUrl = S('social.linkedin', D.LINKEDIN_URL)
+const githubUrl = S('social.github', D.GITHUB_URL)
+const resumeUrl = S('social.resume', D.RESUME_URL)
 const TL = (k) => {
   const t = texts[k]
   if (Array.isArray(t) && t.length) return t
@@ -124,9 +133,13 @@ p(
   `<p>${esc(T('hero.intro'))}</p>`
 )
 p(`<p>${esc(T('hero.keywords'))}</p>`)
-p(
-  `<p>Contact: <a href="mailto:${esc(D.EMAIL)}">${esc(D.EMAIL)}</a> · <a href="${esc(D.LINKEDIN_URL)}">LinkedIn</a> · <a href="${esc(D.GITHUB_URL)}">GitHub</a>${D.RESUME_URL ? ` · <a href="${esc(D.RESUME_URL)}">Resume (PDF)</a>` : ''}</p>`
-)
+const topContacts = [
+  email ? `<a href="mailto:${esc(email)}">${esc(email)}</a>` : '',
+  linkedinUrl ? `<a href="${esc(linkedinUrl)}">LinkedIn</a>` : '',
+  githubUrl ? `<a href="${esc(githubUrl)}">GitHub</a>` : '',
+  resumeUrl ? `<a href="${esc(resumeUrl)}">Resume (PDF)</a>` : '',
+].filter(Boolean)
+if (topContacts.length) p(`<p>Contact: ${topContacts.join(' · ')}</p>`)
 
 // about
 p('<h2>About</h2>')
@@ -280,10 +293,16 @@ if (D.BRANDS.length) {
 // contact
 p('<h2>Contact</h2>')
 p(`<p>${esc(T('contact.sub'))}</p>`)
-p(
-  `<p><a href="mailto:${esc(D.EMAIL)}">${esc(D.EMAIL)}</a> · <a href="${esc(D.LINKEDIN_URL)}">${esc(T('contact.row2.label'))}</a> · <a href="${esc(D.GITHUB_URL)}">GitHub</a>${D.RESUME_URL ? ` · <a href="${esc(D.RESUME_URL)}">${esc(D.RESUME_URL)}</a>` : ''}</p>`
-)
-p(`<p>${esc(T('contact.row3.label'))} ${esc(T('contact.row3.value'))}</p>`)
+const bottomContacts = [
+  email ? `<a href="mailto:${esc(email)}">${esc(email)}</a>` : '',
+  linkedinUrl ? `<a href="${esc(linkedinUrl)}">${esc(T('contact.row2.label') || 'LinkedIn')}</a>` : '',
+  githubUrl ? `<a href="${esc(githubUrl)}">GitHub</a>` : '',
+  resumeUrl ? `<a href="${esc(resumeUrl)}">${esc(resumeUrl)}</a>` : '',
+].filter(Boolean)
+if (bottomContacts.length) p(`<p>${bottomContacts.join(' · ')}</p>`)
+const row3Label = T('contact.row3.label')
+const row3Val = T('contact.row3.value')
+if (row3Label || row3Val) p(`<p>${esc([row3Label, row3Val].filter(Boolean).join(' '))}</p>`)
 p('</section>')
 
 const fragment = out.join('\n')
